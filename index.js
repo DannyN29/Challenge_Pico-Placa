@@ -1,4 +1,5 @@
 //Asegurarse en primero instalar lo siguiente:
+//npm install
 //npm i --save-dev @types/node
 //biblioteca moment con npm install moment
 // Importamos las librerías necesarias
@@ -37,7 +38,7 @@ function verificarHorario(hora) {
     }
 }
 // Pedimos al usuario que ingrese su número de placa
-rl.question('Ingrese su número de placa: ', function (placa) {
+rl.question('Ingrese su número de placa (AAA-0000): ', function (placa) {
     // Pedimos al usuario que ingrese una fecha
     rl.question('Ingrese una fecha (DD/MM/AAAA): ', function (fecha) {
         // Pedimos al usuario que ingrese una hora

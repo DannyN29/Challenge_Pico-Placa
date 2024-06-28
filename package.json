@@ -4,15 +4,20 @@
   "description": "Programa en donde me predice el pico y placa",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cypress:open": "cypress open",  
+"cypress:run": "cypress run"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^20.14.9",
+    "cypress": "^13.12.0",
     "typescript": "^5.5.2"
   },
   "dependencies": {
+    "@types/jest": "^29.5.12",
     "moment": "^2.30.1"
   }
+  
 }

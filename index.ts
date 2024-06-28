@@ -1,6 +1,9 @@
 //Asegurarse en primero instalar lo siguiente:
+//npm install
 //npm i --save-dev @types/node
 //biblioteca moment con npm install moment
+//Para poder correr el programa escribir en el terminal 
+// tsc index.ts y luego node ./index.js
 
 // Importamos las librerías necesarias
 const readline = require('readline');
@@ -41,7 +44,7 @@ function verificarHorario(hora: string) {
 }
 
 // Pedimos al usuario que ingrese su número de placa
-rl.question('Ingrese su número de placa: ', (placa) => {
+rl.question('Ingrese su número de placa (AAA-0000): ', (placa) => {
     // Pedimos al usuario que ingrese una fecha
     rl.question('Ingrese una fecha (DD/MM/AAAA): ', (fecha) => {
         // Pedimos al usuario que ingrese una hora
