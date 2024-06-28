@@ -4,30 +4,51 @@
 
 // Importamos las librerías necesarias
 const readline = require('readline');
-const moment = require('moment');  
+const moment = require('moment');
 
 // Creamos una interfaz para leer la entrada del usuario
 const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
+    input: process.stdin,
+    output: process.stdout
 });
 
 // Función para obtener el día de la semana de una fecha dada
 function obtenerDiaSemana(fecha: Date) {
-  const fechaMoment = moment(fecha, 'DD/MM/YYYY');
-// Convertimos la fecha ingresada al formato 'dddd' para obtener el día de la semana
-  const diaSemana = fechaMoment.format('dddd');
-  return diaSemana;
+    const fechaMoment = moment(fecha, 'DD/MM/YYYY');
+    // Convertimos la fecha ingresada al formato 'dddd' para obtener el día de la semana
+    const diaSemana = fechaMoment.format('dddd');
+    return diaSemana;
 }
 
+// Función para verificar si una hora esta dentro de un horario
+function verificarHorario(hora: string) {
+    // Separamos la hora tanto la  inicial como la final en partes (horas y minutos)
+    const partesDeHoraInicial = hora.split(':');
+    const partesDeHoraFinal = hora.split(':');
+    const horasInicial = parseInt(partesDeHoraInicial[0]);
+    const minutosInicial = parseInt(partesDeHoraInicial[1]);
+    const horasFinal = parseInt(partesDeHoraFinal[0]);
+    const minutosFinal = parseInt(partesDeHoraFinal[1]);
+    // Verificamos si la hora está dentro del rango deseado
+    if ((horasInicial >= 6 && minutosInicial >= 0 && horasFinal < 9
+        && minutosFinal >= 0 && minutosFinal <= 30) ||
+        (horasInicial >= 16 && minutosInicial >= 0 &&
+            horasFinal <= 21 && minutosFinal >= 0 && minutosFinal <= 59)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
-// Pedimos al usuario que ingrese una fecha
+    // Pedimos al usuario que ingrese una fecha
     rl.question('Ingrese una fecha (DD/MM/AAAA): ', (fecha) => {
+      // Pedimos al usuario que ingrese una hora
+      rl.question('Ingrese una hora (HH:MM): ', (hora) => {
         // Obtenemos el día de la semana de la fecha ingresada
-        const diaSemana = obtenerDiaSemana(fecha);     
-        // Mostramos los resultados al usuario
+        const diaSemana = obtenerDiaSemana(fecha);
         console.log(`La fecha ${fecha} es un ${diaSemana}`);
+        console.log(`La hora es: ${hora}`);
         // Cerramos la interfaz de lectura
         rl.close();
       });
-
+    });

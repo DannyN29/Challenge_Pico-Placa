@@ -16,12 +16,34 @@ function obtenerDiaSemana(fecha) {
     var diaSemana = fechaMoment.format('dddd');
     return diaSemana;
 }
+function verificarHorario(hora) {
+    // Separamos la hora tanto la  inicial como la final en partes (horas y minutos)
+    var partesDeHoraInicial = hora.split(':');
+    var partesDeHoraFinal = hora.split(':');
+    var horasInicial = parseInt(partesDeHoraInicial[0]);
+    var minutosInicial = parseInt(partesDeHoraInicial[1]);
+    var horasFinal = parseInt(partesDeHoraFinal[0]);
+    var minutosFinal = parseInt(partesDeHoraFinal[1]);
+    // Verificamos si la hora está dentro del rango deseado
+    if ((horasInicial >= 6 && minutosInicial >= 0 && horasFinal < 9
+        && minutosFinal >= 0 && minutosFinal <= 30) ||
+        (horasInicial >= 16 && minutosInicial >= 0 &&
+            horasFinal <= 21 && minutosFinal >= 0 && minutosFinal <= 59)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
 // Pedimos al usuario que ingrese una fecha
 rl.question('Ingrese una fecha (DD/MM/AAAA): ', function (fecha) {
-    // Obtenemos el día de la semana de la fecha ingresada
-    var diaSemana = obtenerDiaSemana(fecha);
-    // Mostramos los resultados al usuario
-    console.log("La fecha ".concat(fecha, " es un ").concat(diaSemana));
-    // Cerramos la interfaz de lectura
-    rl.close();
+    // Pedimos al usuario que ingrese una hora
+    rl.question('Ingrese una hora (HH:MM): ', function (hora) {
+        // Obtenemos el día de la semana de la fecha ingresada
+        var diaSemana = obtenerDiaSemana(fecha);
+        console.log("La fecha ".concat(fecha, " es un ").concat(diaSemana));
+        console.log("La hora es: ".concat(hora));
+        // Cerramos la interfaz de lectura
+        rl.close();
+    });
 });
